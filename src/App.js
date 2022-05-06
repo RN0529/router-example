@@ -5,6 +5,7 @@ import "./App.css";
 import Debits from "./components/Debits";
 
 import axios from "axios";
+import Credits from "./components/Credits";
 
 
 class App extends React.Component {
@@ -67,6 +68,7 @@ class App extends React.Component {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/debits" element={<Debits addDebit={this.addDebit} debits={this.state.debits} />} />
+          <Route path="/credits" element={<Credits addDebit={this.addDebit} debits={this.state.debits} />} />
         </Routes>
         <h3>{this.state.accountBalance}</h3>
       </div>
@@ -82,6 +84,8 @@ function Home() {
     <div>
       <h2>Welcome to the homepage!</h2>
       <Link to="/debits">Debits</Link>
+      <br></br>
+      <Link to="/credits">Credits</Link>
     </div>
   );
 }
