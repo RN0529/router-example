@@ -69,7 +69,7 @@ class App extends React.Component {
     //updates state based off user input
     e.preventDefault()
     let { credits } = this.state
-    let balance = this.state.accountBalance;
+    let balances = this.state.accountBalance;
 
     const description  = e.target[0].value
     const amount  = Number(e.target[1].value)
@@ -80,12 +80,14 @@ class App extends React.Component {
     const date = today.getFullYear().toString() + "-" + month.toString() + "-" + today.getDate().toString();
     
     const newCredit = {description, amount, date}
-    balance = balance - amount;
-    balance = balance.toFixed(2)
+    balances= parseInt(balances, 10)
+    balances = balances + amount;
+    balances = balances.toFixed(2)
     
+    console.log(balances)
     
     credits = [...credits, newCredit]
-    this.setState({credits: credits, accountBalance: balance})
+    this.setState({credits: credits, accountBalance: balances})
   }
 
   render() {
@@ -96,7 +98,7 @@ class App extends React.Component {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/debits" element={<Debits addDebit={this.addDebit} debits={this.state.debits} />} />
-          <Route path="/credits" element={<Credits addDebit={this.addCredit} credits={this.state.credits} />} />
+          <Route path="/credits" element={<Credits addCredit={this.addCredit} credits={this.state.credits} />} />
         </Routes>
         <h3>{this.state.accountBalance}</h3>
       </div>
