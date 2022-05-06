@@ -37,6 +37,7 @@ class App extends React.Component {
 
     let accountBalance = creditSum - debitSum;
     accountBalance = accountBalance.toFixed(2)
+    
     this.setState({debits, credits, accountBalance});
   } 
 
@@ -59,6 +60,7 @@ class App extends React.Component {
     const newDebit = {description, amount, date}
     balance = balance - amount;
     balance = balance.toFixed(2)
+    balance= parseFloat(balance)
     debits = [...debits, newDebit]
     this.setState({debits: debits, accountBalance: balance})
   }
@@ -80,10 +82,10 @@ class App extends React.Component {
     const date = today.getFullYear().toString() + "-" + month.toString() + "-" + today.getDate().toString();
     
     const newCredit = {description, amount, date}
-    balances= parseInt(balances, 10)
+    balances= parseFloat(balances)
     balances = balances + amount;
     balances = balances.toFixed(2)
-    
+    balances= parseFloat(balances)
     console.log(balances)
     
     credits = [...credits, newCredit]
