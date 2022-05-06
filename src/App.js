@@ -61,6 +61,28 @@ class App extends React.Component {
     this.setState({debits: debits, accountBalance: balance})
   }
 
+
+  addCredit = (e) => {
+    //send to debits view via props
+    //updates state based off user input
+    e.preventDefault()
+    let { credits } = this.state
+    let balance = this.state.accountBalance;
+
+    const description  = e.target[0].value
+    const amount  = Number(e.target[1].value)
+    const today = new Date();
+
+    //formatting to match other dates
+    const month = today.getMonth() + 1;
+    const date = today.getFullYear().toString() + "-" + month.toString() + "-" + today.getDate().toString();
+    
+    const newCredit = {description, amount, date}
+    balance = balance + amount;
+    credits = [...credits, newCredit]
+    this.setState({credits: credits, accountBalance: balance})
+  }
+
   render() {
     return (
       <div className="App">
@@ -68,7 +90,7 @@ class App extends React.Component {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/debits" element={<Debits addDebit={this.addDebit} debits={this.state.debits} />} />
-          <Route path="/credits" element={<Credits addDebit={this.addDebit} debits={this.state.debits} />} />
+          <Route path="/credits" element={<Credits addDebit={this.addCredit} credits={this.state.credits} />} />
         </Routes>
         <h3>{this.state.accountBalance}</h3>
       </div>
