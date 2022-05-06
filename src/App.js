@@ -36,6 +36,7 @@ class App extends React.Component {
     })
 
     let accountBalance = creditSum - debitSum;
+    accountBalance = accountBalance.toFixed(2)
     this.setState({debits, credits, accountBalance});
   } 
 
@@ -57,6 +58,7 @@ class App extends React.Component {
     
     const newDebit = {description, amount, date}
     balance = balance - amount;
+    balance = balance.toFixed(2)
     debits = [...debits, newDebit]
     this.setState({debits: debits, accountBalance: balance})
   }
@@ -78,7 +80,10 @@ class App extends React.Component {
     const date = today.getFullYear().toString() + "-" + month.toString() + "-" + today.getDate().toString();
     
     const newCredit = {description, amount, date}
-    balance = balance + amount;
+    balance = balance - amount;
+    balance = balance.toFixed(2)
+    
+    
     credits = [...credits, newCredit]
     this.setState({credits: credits, accountBalance: balance})
   }
@@ -87,6 +92,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Welcome to React Router!</h1>
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/debits" element={<Debits addDebit={this.addDebit} debits={this.state.debits} />} />

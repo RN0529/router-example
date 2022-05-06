@@ -10,7 +10,7 @@ const Credits = (props) => {
     }
     return (
     	<div>
-            <h1>This is credits</h1>
+        <h1>This is credits</h1>
     	   <h1>Credits</h1>
     	   {creditsView()}
            <form onSubmit={props.addDebit}>
